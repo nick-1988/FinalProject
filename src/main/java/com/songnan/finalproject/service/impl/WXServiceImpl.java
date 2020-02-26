@@ -42,6 +42,13 @@ public class WXServiceImpl implements WXService {
             String resultContent = "";
             // 文本消息
             if (msgType.equals(MessageUtils.REQ_MESSAGE_TYPE_TEXT)) {
+                if (content.contains("天气")) {
+                    List<String> stringList =Arrays.asList(content.split("天气"));
+                    String city = stringList.get(0);
+                    resultContent = weatherService.getWeather(city);
+                }else {
+                    resultContent = WXServiceImpl.MENU_STRING();
+                }
                 TextMessage text = new TextMessage();
                 text.setContent(resultContent);
                 text.setToUserName(fromUserName);
