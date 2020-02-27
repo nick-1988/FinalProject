@@ -46,7 +46,12 @@ public class WXServiceImpl implements WXService {
                     List<String> stringList =Arrays.asList(content.split("天气"));
                     String city = stringList.get(0);
                     resultContent = weatherService.getWeather(city);
-                }else {
+                } else if (content.contains("快递")) {
+                    List<String> stringList =Arrays.asList(content.split("快递"));
+                    String trackingCompany = stringList.get(0);
+                    String trackingNumber = stringList.get(1);
+                    resultContent = TRACKING_STRING(trackingCompany,trackingNumber);
+                } else {
                     resultContent = WXServiceImpl.MENU_STRING();
                 }
                 TextMessage text = new TextMessage();
@@ -75,6 +80,13 @@ public class WXServiceImpl implements WXService {
         return stringBuffer.toString();
     }
 
+    public String TRACKING_STRING(String trackingCompany,String trackingNumber) {
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append("您查询的"+trackingCompany+"快递单号是\n");
+        stringBuffer.append(trackingService.getTracking(trackingCompany,trackingNumber));
+        stringBuffer.append("为您查到如下信息:");
+        return stringBuffer.toString();
+    }
 
 
 }
