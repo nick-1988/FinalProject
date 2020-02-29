@@ -51,6 +51,12 @@ public class WXServiceImpl implements WXService {
                     String trackingCompany = stringList.get(0);
                     String trackingNumber = stringList.get(1);
                     resultContent = TRACKING_STRING(trackingCompany,trackingNumber);
+                } else if (content.contains("音乐")) {
+                    List<String> stringList =Arrays.asList(content.split("音乐"));
+                    String music = stringList.get(1);
+                    // 需要对音乐名字进行url加密
+                    String encodeMusic = URLEncoder.encode(music, "UTF-8");
+                    resultContent = WXServiceImpl.MUSIC_STRING(music, encodeMusic);
                 } else {
                     resultContent = WXServiceImpl.MENU_STRING();
                 }
@@ -88,5 +94,13 @@ public class WXServiceImpl implements WXService {
         return stringBuffer.toString();
     }
 
+    public static String MUSIC_STRING(String music, String encodeMusic) {
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append("您查询的音乐是\t");
+        stringBuffer.append(music + "\n");
+        stringBuffer.append("由于版权原因无法提供歌曲，为您查到qq音乐中的如下信息:\n");
+        stringBuffer.append("https://y.qq.com/portal/search.html#page=1&searchid=1&remoteplace=txt.yqq.top&t=song&w=" + encodeMusic);
+        return stringBuffer.toString();
+    }
 
 }
