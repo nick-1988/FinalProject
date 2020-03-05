@@ -57,6 +57,12 @@ public class WXServiceImpl implements WXService {
                     // 需要对音乐名字进行url加密
                     String encodeMusic = URLEncoder.encode(music, "UTF-8");
                     resultContent = WXServiceImpl.MUSIC_STRING(music, encodeMusic);
+                } else if (content.contains("电影")) {
+                    List<String> stringList =Arrays.asList(content.split("电影"));
+                    String movie = stringList.get(1);
+                    // 需要对电影名字进行url加密
+                    String encodeMovie = URLEncoder.encode(movie, "UTF-8");
+                    resultContent = WXServiceImpl.MOVIE_STRING(movie, encodeMovie);
                 } else {
                     resultContent = WXServiceImpl.MENU_STRING();
                 }
@@ -103,4 +109,17 @@ public class WXServiceImpl implements WXService {
         return stringBuffer.toString();
     }
 
+    public static String MOVIE_STRING(String movie, String encodeMovie) {
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append("您查询的电影是\t");
+        stringBuffer.append(movie + "\n");
+        stringBuffer.append("为您查到如下信息:");
+        stringBuffer.append("https://search.douban.com/movie/subject_search?search_text=" + encodeMovie + "&cat=1002");
+        return stringBuffer.toString();
+    }
+
+//    public static void main(String[] args) {
+//        String[] s = "电影肖生克".split("电影");
+//        System.out.println(JSON.toJSONString(s));
+//    }
 }
