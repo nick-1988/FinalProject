@@ -63,7 +63,9 @@ public class WXServiceImpl implements WXService {
                     // 需要对电影名字进行url加密
                     String encodeMovie = URLEncoder.encode(movie, "UTF-8");
                     resultContent = WXServiceImpl.MOVIE_STRING(movie, encodeMovie);
-                } else {
+                } else if (StringUtils.equals(content,"历史上的今天")) {
+                    resultContent = HISTORY_STRING();
+                }else {
                     resultContent = WXServiceImpl.MENU_STRING();
                 }
                 TextMessage text = new TextMessage();
@@ -117,9 +119,21 @@ public class WXServiceImpl implements WXService {
         stringBuffer.append("https://search.douban.com/movie/subject_search?search_text=" + encodeMovie + "&cat=1002");
         return stringBuffer.toString();
     }
+    public String HISTORY_STRING() {
+        Date date = new Date(System.currentTimeMillis());
+        String time = DateUtils.formatDate(date, HISTORY_DATE);
+        time.split(",");
+        List<String> list = Arrays.asList(time.split(","));
+        String month = list.get(0);
+        String day = list.get(1);
+        return historyService.getHistory(month, day);
+    }
 
-//    public static void main(String[] args) {
-//        String[] s = "电影肖生克".split("电影");
-//        System.out.println(JSON.toJSONString(s));
-//    }
+    public static void main(String[] args) {
+        Date date = new Date(System.currentTimeMillis());
+        ArrayList;
+        String time = DateUtils.formatDate(date, HISTORY_DATE);
+        List<String> list = Arrays.asList(time.split(","));
+        System.out.println(JSON.toJSONString(list));
+    }
 }
