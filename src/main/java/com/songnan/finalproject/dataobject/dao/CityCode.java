@@ -1,4 +1,4 @@
-package com.walking.meeting.dataobject.dao;
+package com.songnan.finalproject.dataobject.dao;
 
 import lombok.Data;
 

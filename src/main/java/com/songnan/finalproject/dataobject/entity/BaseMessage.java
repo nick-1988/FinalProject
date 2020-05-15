@@ -1,4 +1,4 @@
-package com.walking.meeting.dataobject.entity;
+package com.songnan.finalproject.dataobject.entity;
 
 import lombok.Data;
 

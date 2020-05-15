@@ -1,11 +1,11 @@
-package com.walking.meeting.controller;
+package com.songnan.finalproject.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 
-import com.walking.meeting.Service.WXService;
-import com.walking.meeting.utils.SignUtils;
+import com.songnan.finalproject.service.WXService;
+import com.songnan.finalproject.utils.SignUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -52,4 +52,39 @@ public class WXController {
         }
     }
 
+    /**
+     * 微信公众平台服务器配置验证
+     * @param request
+     * @param response
+     */
+    @GetMapping
+    @ApiOperation("微信公众平台服务器配置验证")
+    public void validate(HttpServletRequest request, HttpServletResponse response) {
+        log.info("正在通过微信公众平台服务器验证");
+        // 微信加密签名，signature结合了开发者填写的token参数和请求中的timestamp参数、nonce参数。
+        String signature = request.getParameter("signature");
+        // 时间戳
+        String timestamp = request.getParameter("timestamp");
+        // 随机数
+        String nonce = request.getParameter("nonce");
+        // 随机字符串
+        String echostr = request.getParameter("echostr");
+
+        PrintWriter out = null;
+        try {
+            out = response.getWriter();
+            // 通过检验signature对请求进行校验，若校验成功则原样返回echostr，否则接入失败
+            if (SignUtils.checkSignature(signature, timestamp, nonce)) {
+                out.print(echostr);
+            }
+            log.info("已通过验证");
+        } catch (IOException e) {
+            e.printStackTrace();
+            log.error(e.getMessage());
+
+        } finally {
+            out.close();
+            out = null;
+        }
+    }
 }

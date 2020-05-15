@@ -1,4 +1,4 @@
-package com.walking.meeting.dataobject.entity;
+package com.songnan.finalproject.dataobject.entity;
 
 public class TextMessage extends BaseMessage{
     // 消息内容

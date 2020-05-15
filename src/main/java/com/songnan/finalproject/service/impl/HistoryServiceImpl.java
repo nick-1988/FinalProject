@@ -1,16 +1,16 @@
-package com.walking.meeting.Service.impl;
+package com.songnan.finalproject.service.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.walking.meeting.Service.HistoryService;
-import com.walking.meeting.dataobject.dto.HistoryDTO;
-import com.walking.meeting.dataobject.dto.TrackingDTO;
+import com.songnan.finalproject.service.HistoryService;
+import com.songnan.finalproject.dataobject.dto.HistoryDTO;
+import com.songnan.finalproject.dataobject.dto.TrackingDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.walking.meeting.utils.HttpUtils.httpRequest;
+import static com.songnan.finalproject.utils.HttpUtils.httpRequest;
 
 @Service
 public class HistoryServiceImpl implements HistoryService {

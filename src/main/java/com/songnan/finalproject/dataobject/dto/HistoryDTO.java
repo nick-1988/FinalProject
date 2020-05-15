@@ -1,4 +1,4 @@
-package com.walking.meeting.dataobject.dto;
+package com.songnan.finalproject.dataobject.dto;
 
 import lombok.Data;
 

@@ -1,21 +1,21 @@
-package com.walking.meeting.Service.impl;
+package com.songnan.finalproject.service.impl;
 
-import static com.walking.meeting.utils.HttpUtils.httpRequest;
+import static com.songnan.finalproject.utils.HttpUtils.httpRequest;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import com.walking.meeting.Service.TrackingService;
-import com.walking.meeting.dataobject.dto.TrackingDTO;
+import com.songnan.finalproject.service.TrackingService;
+import com.songnan.finalproject.dataobject.dto.TrackingDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.walking.meeting.Mapper.CityCodeMapper;
-import com.walking.meeting.Service.WeatherService;
-import com.walking.meeting.dataobject.dto.CityWeatherDTO;
+import com.songnan.finalproject.Mapper.CityCodeMapper;
+import com.songnan.finalproject.service.WeatherService;
+import com.songnan.finalproject.dataobject.dto.CityWeatherDTO;
 
 @Service
 public class TrackingServiceImpl implements TrackingService {

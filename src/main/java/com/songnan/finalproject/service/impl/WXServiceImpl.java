@@ -1,20 +1,26 @@
-package com.walking.meeting.Service.impl;
+package com.songnan.finalproject.service.impl;
 
+import com.alibaba.druid.util.StringUtils;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.walking.meeting.Service.TrackingService;
-import com.walking.meeting.Service.WXService;
-import com.walking.meeting.Service.WeatherService;
-import com.walking.meeting.dataobject.entity.TextMessage;
-import com.walking.meeting.utils.MessageUtils;
+import com.songnan.finalproject.service.TrackingService;
+import com.songnan.finalproject.service.HistoryService;
+import com.songnan.finalproject.service.WXService;
+import com.songnan.finalproject.service.WeatherService;
+import com.songnan.finalproject.dataobject.entity.TextMessage;
+import com.songnan.finalproject.utils.DateUtils;
+import com.songnan.finalproject.utils.MessageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import java.net.URLEncoder;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
+
+import static com.songnan.finalproject.utils.DateUtils.HISTORY_DATE;
 
 @Service
 public class WXServiceImpl implements WXService {
@@ -23,6 +29,8 @@ public class WXServiceImpl implements WXService {
     WeatherService weatherService;
     @Autowired
     TrackingService trackingService;
+    @Autowired
+    HistoryService historyService;
 
     @Override
     public String newMessageRequest(HttpServletRequest request) {
@@ -89,8 +97,9 @@ public class WXServiceImpl implements WXService {
         stringBuffer.append("回复如下关键字，可获取不一样的信息\n");
         stringBuffer.append("1.城市+天气 例如杭州天气,可获取当天杭州天气\n");
         stringBuffer.append("2.快递公司名+快递+单号 例如中通快递123,可查询该快递状态\n");
-        stringBuffer.append("3.音乐+名字 例如七里香,可获取该歌曲信息\n");
-        stringBuffer.append("4.电影+名字 例如泰坦尼克号，可获取该电影信息");
+        stringBuffer.append("3.音乐+名字 例如音乐七里香,可获取该歌曲信息\n");
+        stringBuffer.append("4.电影+名字 例如泰坦尼克号，可获取该电影信息\n");
+        stringBuffer.append("5.历史上的今天");
         return stringBuffer.toString();
     }
 
@@ -131,7 +140,6 @@ public class WXServiceImpl implements WXService {
 
     public static void main(String[] args) {
         Date date = new Date(System.currentTimeMillis());
-        ArrayList;
         String time = DateUtils.formatDate(date, HISTORY_DATE);
         List<String> list = Arrays.asList(time.split(","));
         System.out.println(JSON.toJSONString(list));

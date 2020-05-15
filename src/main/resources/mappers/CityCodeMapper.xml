@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.walking.meeting.Mapper.CityCodeMapper" >
-  <resultMap id="BaseResultMap" type="com.walking.meeting.dataobject.dao.CityCode" >
+<mapper namespace="com.songnan.finalproject.Mapper.CityCodeMapper" >
+  <resultMap id="BaseResultMap" type="com.songnan.finalproject.dataobject.dao.CityCode" >
     <result column="city_code" property="cityCode"/>
     <result column="city_name" property="cityName"/>
   </resultMap>

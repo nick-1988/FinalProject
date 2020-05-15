@@ -1,4 +1,4 @@
-package com.walking.meeting.utils;
+package com.songnan.finalproject.utils;
 
 import java.math.BigDecimal;
 import java.text.ParseException;

@@ -1,19 +1,22 @@
-package com.walking.meeting.Service.impl;
+package com.songnan.finalproject.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.walking.meeting.Service.WeatherService;
-import com.walking.meeting.Mapper.CityCodeMapper;
-import com.walking.meeting.dataobject.dto.CityWeatherDTO;
+import com.songnan.finalproject.service.WeatherService;
+import com.songnan.finalproject.Mapper.CityCodeMapper;
+import com.songnan.finalproject.dataobject.dto.CityWeatherDTO;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.walking.meeting.utils.HttpUtils.httpRequest;
+import static com.songnan.finalproject.utils.HttpUtils.httpRequest;
 
 @Service
+@Slf4j
 public class WeatherServiceImpl implements WeatherService {
 
     @Autowired
@@ -31,6 +34,7 @@ public class WeatherServiceImpl implements WeatherService {
         stringBuffer.append("http://t.weather.sojson.com/api/weather/city/");
         stringBuffer.append(cityNumber);
         JSONObject json = httpRequest(stringBuffer.toString(), "GET", null);
+        log.info("拿到的api结果" + JSON.toJSONString(json));
         JSONArray daysData = json.getJSONObject("data").getJSONArray("forecast");
         List<CityWeatherDTO> cityWeatherDTOList = new ArrayList<>();
         for (int i = 0; i < daysData.size(); i++) {

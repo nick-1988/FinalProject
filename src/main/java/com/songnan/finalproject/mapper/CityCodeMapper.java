@@ -1,6 +1,6 @@
-package com.walking.meeting.Mapper;
+package com.songnan.finalproject.Mapper;
 
-import com.walking.meeting.dataobject.dao.CityCode;
+import com.songnan.finalproject.dataobject.dao.CityCode;
 import org.apache.ibatis.annotations.*;
 
 @Mapper

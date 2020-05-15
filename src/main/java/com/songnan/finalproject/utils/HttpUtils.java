@@ -1,4 +1,4 @@
-package com.walking.meeting.utils;
+package com.songnan.finalproject.utils;
 import java.io.*;
 import java.net.ConnectException;
 import java.net.HttpURLConnection;
